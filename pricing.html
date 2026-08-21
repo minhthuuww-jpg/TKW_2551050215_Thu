@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bảng giá - Marty Store</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    .card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    .dark { --color-bg: #0e1c19; --color-text: #eaf2ee; --color-surface: #1a2d28; --color-border: #24403a; }
+  </style>
+</head>
+<body>
+  >
+  <section class="py-20 bg-gradient-to-r from-brand-50 to-pink-50 dark:from-brand-900 dark:to-pink-900">
+    <div class="mx-auto w-full max-w-6xl px-5 text-center">
+      <h1 class="font-display text-4xl md:text-5xl font-bold">Chọn gói phù hợp</h1>
+      <p class="mt-4 text-gray-600 dark:text-gray-300">Đầu tư cho phong cách của bạn</p>
+    </div>
+  </section>
+
+
+  <section class="py-24 bg-white dark:bg-gray-900">
+    <div class="mx-auto w-full max-w-6xl px-5">
+      <h2 class="font-display text-3xl font-bold text-center">So sánh tính năng</h2>
+      <p class="mt-2 text-sm text-gray-500 lg:hidden text-center">Vuốt ngang để xem hết bảng</p>
+      <div class="mt-8 overflow-x-auto">
+        <table class="min-w-[720px] w-full border-collapse">
+          <thead>
+            <tr class="bg-gray-50 dark:bg-gray-800">
+              <th class="p-4 text-left">Tính năng</th>
+              <th class="p-4 text-center">Cơ bản</th>
+              <th class="p-4 text-center bg-brand-50 dark:bg-brand-900">Chuyên nghiệp</th>
+              <th class="p-4 text-center">Doanh nghiệp</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-200 dark:border-gray-700">
+              <td class="p-4">Số bộ sưu tập</td>
+              <td class="p-4 text-center">1/tháng</td>
+              <td class="p-4 text-center bg-brand-50 dark:bg-brand-900">5/tháng</td>
+              <td class="p-4 text-center">20/tháng</td>
+            </tr>
+            <tr class="border-b border-gray-200 dark:border-gray-700">
+              <td class="p-4">Tư vấn</td>
+              <td class="p-4 text-center">Cơ bản</td>
+              <td class="p-4 text-center bg-brand-50 dark:bg-brand-900">Chuyên sâu</td>
+              <td class="p-4 text-center">1-1 với chuyên gia</td>
+            </tr>
+            <tr class="border-b border-gray-200 dark:border-gray-700">
+              <td class="p-4">Vận chuyển</td>
+              <td class="p-4 text-center">Miễn phí</td>
+              <td class="p-4 text-center bg-brand-50 dark:bg-brand-900">24/7</td>
+              <td class="p-4 text-center">Toàn quốc</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-gray-50 dark:bg-gray-800">
+    <div class="mx-auto w-full max-w-6xl px-5">
+      <h2 class="font-display text-3xl font-bold text-center">Câu hỏi về thanh toán</h2>
+      <div class="mt-8 grid gap-6 max-w-3xl mx-auto">
+        <details class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-sm">
+          <summary class="flex cursor-pointer items-center justify-between font-semibold">
+            Tôi có thể thanh toán bằng cách nào?
+            <span class="text-brand-600">▼</span>
+          </summary>
+          <p class="mt-4 text-gray-600 dark:text-gray-300">Chúng tôi chấp nhận thanh toán qua thẻ tín dụng, chuyển khoản ngân hàng, và ví điện tử.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+\</body>
+</html>
