@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liên hệ - Marty Store</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+ 
+  <section class="py-20 bg-gradient-to-r from-brand-50 to-pink-50 dark:from-brand-900 dark:to-pink-900">
+    <div class="mx-auto w-full max-w-6xl px-5 text-center">
+      <h1 class="font-display text-4xl md:text-5xl font-bold">Liên hệ với chúng tôi</h1>
+      <p class="mt-4 text-gray-600 dark:text-gray-300">Chúng tôi luôn sẵn sàng hỗ trợ bạn</p>
+    </div>
+  </section>
+
+  <section class="py-24 bg-white dark:bg-gray-900">
+    <div class="mx-auto w-full max-w-6xl px-5">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <h2 class="font-display text-2xl font-bold">Gửi tin nhắn</h2>
+          <form class="mt-6 flex flex-col gap-4">
+            <div>
+              <label class="field-label block text-sm font-medium mb-1" for="ho-ten">
+                Họ và tên <span class="text-red-600" aria-hidden="true">*</span>
+              </label>
+              <input class="field-input w-full rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2 dark:bg-gray-800" id="ho-ten" name="hoTen" type="text" required autocomplete="name" />
+            </div>
+
+            <div>
+              <label class="field-label block text-sm font-medium mb-1" for="email">
+                Email <span class="text-red-600" aria-hidden="true">*</span>
+              </label>
+              <input class="field-input w-full rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2 dark:bg-gray-800" id="email" name="email" type="email" required autocomplete="email" inputmode="email" />
+            </div>
+
+            <div>
+              <label class="field-label block text-sm font-medium mb-1" for="dien-thoai">
+                Số điện thoại <span class="text-red-600" aria-hidden="true">*</span>
+              </label>
+              <input class="field-input w-full rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2 dark:bg-gray-800" id="dien-thoai" name="dienThoai" type="tel" required pattern="[0-9]{9}" autocomplete="tel" inputmode="numeric" aria-describedby="dien-thoai-hint" />
+              <p class="mt-1.5 text-xs text-gray-500 dark:text-gray-400" id="dien-thoai-hint">
+                Chúng tôi gọi qua số này, không nhắn tin quảng cáo.
+              </p>
+            </div>
+
+            <div>
+              <label class="field-label block text-sm font-medium mb-1" for="chu-de">
+                Chủ đề
+              </label>
+              <select class="field-input w-full rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2 dark:bg-gray-800" id="chu-de" name="chuDe">
+                <option value="">Chọn chủ đề</option>
+                <option value="tu-van">Tư vấn sản phẩm</option>
+                <option value="don-hang">Đơn hàng</option>
+                <option value="hop-tac">Hợp tác</option>
+                <option value="khac">Khác</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="field-label block text-sm font-medium mb-1" for="tin-nhan">
+                Tin nhắn <span class="text-red-600" aria-hidden="true">*</span>
+              </label>
+              <textarea class="field-input w-full rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2 dark:bg-gray-800" id="tin-nhan" name="tinNhan" rows="4" required></textarea>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <input type="checkbox" id="dong-y" name="dongY" required />
+              <label class="text-sm text-gray-600 dark:text-gray-300" for="dong-y">
+                Tôi đồng ý với <a href="#" class="text-brand-600">điều khoản</a> và <a href="#" class="text-brand-600">chính sách bảo mật</a>
+              </label>
+            </div>
+
+            <button type="submit" class="btn-primary rounded-lg px-8 py-3 bg-brand-600 text-white font-semibold hover:bg-brand-700 transition">
+              Gửi tin nhắn
+            </button>
+
+            <p class="text-sm text-gray-500 dark:text-gray-400">* Sau khi gửi, chúng tôi sẽ phản hồi trong vòng 24 giờ.</p>
+          </form>
+        </div>
+
+        <div class="flex flex-col gap-8">
+          <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-8">
+            <h3 class="font-semibold text-lg">Thông tin liên hệ</h3>
+            <div class="mt-4 flex flex-col gap-4">
+              <div>
+                <p class="font-medium">📍 Địa chỉ</p>
+                <p class="text-gray-600 dark:text-gray-300">TP. Hồ Chí Minh</p>
+              </div>
+              <div>
+                <p class="font-medium">📞 Điện thoại</p>
+                <p class="text-gray-600 dark:text-gray-300">(84) 123-456-789</p>
+              </div>
+              <div>
+                <p class="font-medium">✉️ Email</p>
+                <p class="text-gray-600 dark:text-gray-300">info@marty.com</p>
+              </div>
+              <div>
+                <p class="font-medium">🕐 Giờ làm việc</p>
+                <p class="text-gray-600 dark:text-gray-300">Thứ 2 - Thứ 7: 8:00 - 18:00</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-8">
+            <h3 class="font-semibold text-lg">Sau khi gửi thì sao?</h3>
+            <ul class="mt-4 flex flex-col gap-3 text-gray-600 dark:text-gray-300">
+              <li class="flex items-center gap-2">✅ Xác nhận tự động qua email</li>
+              <li class="flex items-center gap-2">✅ Phản hồi trong vòng 24 giờ</li>
+              <li class="flex items-center gap-2">✅ Đội ngũ tư vấn chuyên nghiệp</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
