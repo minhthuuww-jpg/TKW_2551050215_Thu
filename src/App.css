@@ -1,0 +1,414 @@
+/*
+   common components
+ */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+  padding: 0.75rem 2rem;
+
+  border: 0;
+  border-radius: 0.75rem;
+
+  background: var(--brand-600);
+  color: white;
+
+  font-weight: 600;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: var(--brand-700);
+  transform: translateY(-1px);
+}
+
+
+/* ================================
+   NAVBAR
+================================ */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid var(--border);
+
+  backdrop-filter: blur(10px);
+
+  transition: box-shadow 0.3s ease;
+}
+
+.dark .site-header {
+  background: rgba(14, 28, 25, 0.95);
+}
+
+.site-header.is-scrolled {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ================================
+   MOBILE MENU
+================================ */
+
+.mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    max-height 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.mobile-menu.is-open {
+  max-height: 500px;
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* ================================
+   DARK MODE SWITCH
+================================ */
+
+.theme-switch {
+  position: relative;
+
+  width: 48px;
+  height: 28px;
+
+  border: 0;
+  border-radius: 999px;
+
+  background: #d1d5db;
+}
+
+.theme-switch::after {
+  content: "";
+
+  position: absolute;
+
+  top: 4px;
+  left: 4px;
+
+  width: 20px;
+  height: 20px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  transition: transform 0.2s ease;
+}
+
+.theme-switch[aria-checked="true"] {
+  background: var(--brand-600);
+}
+
+.theme-switch[aria-checked="true"]::after {
+  transform: translateX(20px);
+}
+
+
+/* ================================
+   CARD
+================================ */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ================================
+   FAQ ACCORDION
+================================ */
+
+.faq-item {
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+
+  overflow: hidden;
+}
+
+.faq-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  min-height: 52px;
+
+  padding: 1.25rem;
+
+  border: 0;
+  background: transparent;
+
+  color: var(--text);
+
+  text-align: left;
+  font-weight: 600;
+}
+
+.faq-trigger-icon {
+  transition: transform 0.3s ease;
+}
+
+.faq-trigger[aria-expanded="true"] .faq-trigger-icon {
+  transform: rotate(180deg);
+}
+
+.faq-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+
+  transition: grid-template-rows 0.3s ease;
+}
+
+.faq-panel > div {
+  overflow: hidden;
+}
+
+.faq-panel.is-open {
+  grid-template-rows: 1fr;
+}
+
+
+/* ================================
+   PRICING SWITCH
+================================ */
+
+.pricing-switch {
+  position: relative;
+
+  width: 48px;
+  height: 28px;
+
+  border: 0;
+  border-radius: 999px;
+
+  background: #d1d5db;
+}
+
+.pricing-switch::after {
+  content: "";
+
+  position: absolute;
+
+  top: 4px;
+  left: 4px;
+
+  width: 20px;
+  height: 20px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  transition: transform 0.2s ease;
+}
+
+.pricing-switch[aria-checked="true"] {
+  background: var(--brand-600);
+}
+
+.pricing-switch[aria-checked="true"]::after {
+  transform: translateX(20px);
+}
+
+
+/* ================================
+   PRICING TABLE
+================================ */
+
+.comparison-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+.comparison-table {
+  width: 100%;
+  min-width: 720px;
+
+  border-collapse: collapse;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 1rem;
+
+  border-bottom: 1px solid var(--border);
+}
+
+
+/* ================================
+   SLIDER
+================================ */
+
+.slider {
+  position: relative;
+  overflow: hidden;
+}
+
+.slider-track {
+  display: flex;
+
+  transition: transform 400ms ease;
+}
+
+.slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+}
+
+.slider-button {
+  width: 44px;
+  height: 44px;
+
+  border: 1px solid var(--border);
+  border-radius: 50%;
+
+  background: var(--surface);
+  color: var(--text);
+}
+
+.slider-dots {
+  display: flex;
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-top: 1rem;
+}
+
+.slider-dot {
+  width: 9px;
+  height: 9px;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: #d1d5db;
+}
+
+.slider-dot[aria-current="true"] {
+  background: var(--brand-600);
+
+  transform: scale(1.25);
+}
+
+
+/* ================================
+   SCROLL REVEAL
+================================ */
+
+.reveal {
+  opacity: 0;
+
+  transform: translateY(24px);
+
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ================================
+   BACK TO TOP
+================================ */
+
+.to-top {
+  position: fixed;
+
+  right: 24px;
+  bottom: 24px;
+
+  width: 44px;
+  height: 44px;
+
+  display: grid;
+  place-items: center;
+
+  border: 0;
+  border-radius: 12px;
+
+  background: var(--brand-600);
+  color: white;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translateY(10px);
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+
+  transform: translateY(0);
+}
+
+
+/* ================================
+   RESPONSIVE
+   Mobile-first
+================================ */
+
+@media (min-width: 768px) {
+  .mobile-menu {
+    max-height: none;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .slide {
+    flex-basis: 50%;
+    min-width: 50%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .slide {
+    flex-basis: 33.333%;
+    min-width: 33.333%;
+  }
+}
