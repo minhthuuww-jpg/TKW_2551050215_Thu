@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="vi" class="">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Bảng giá dịch vụ Marty Store" />
+  <title>Bảng giá - Marty Store</title>
+
+  <script>
+    (function() {
+      const saved = localStorage.getItem("theme");
+      const dark = saved ? saved === "dark"
+        : window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.classList.toggle("dark", dark);
+    })();
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap"
+  
+  />
+
+  <link rel="stylesheet" href="./src/styles.css" />
+  <link rel="stylesheet" href="./src/pricing.css" />
+    <link rel="stylesheet" href="./src/App.css" />
+
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            display: ["Playfair Display", "serif"]
+          },
+          colors: {
+            brand: {
+              50: "#fff1f5",
+              100: "#ffe4ec",
+              500: "#ec4899",
+              600: "#db2777",
+              700: "#be185d",
+              900: "#831843"
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --soft: #f9fafb;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+    }
+
+    .dark {
+      --bg: #0e1c19;
+      --surface: #1a2d28;
+      --soft: #162621;
+      --text: #eaf2ee;
+      --muted: #c3d0ca;
+      --border: #24403a;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", sans-serif;
+      transition: background-color .3s ease, color .3s ease;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,.94);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      transition: box-shadow .3s ease;
+    }
+
+    .dark .site-header {
+      background: rgba(14,28,25,.94);
+    }
+
+    .site-header.is-scrolled {
+      box-shadow: 0 10px 25px rgba(0,0,0,.08);
+    }
+
+    .mobile-menu {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      transition: max-height .3s ease, opacity .3s ease, visibility .3s ease;
+    }
+
+    .mobile-menu.is-open {
+      max-height: 500px;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .theme-switch {
+      position: relative;
+      width: 48px;
+      height: 28px;
+      flex: 0 0 auto;
+      border: 0;
+      border-radius: 999px;
+      background: #d1d5db;
+      cursor: pointer;
+      transition: background .3s ease;
+    }
+
+    .theme-switch::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #fff;
+      transition: transform .3s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,.15);
+    }
+
+    .theme-switch[aria-checked="true"] {
+      background: #db2777;
+    }
+
+    .theme-switch[aria-checked="true"]::after {
+      transform: translateX(20px);
+    }
+
+    .dark .theme-switch {
+      background: #4a5568;
+    }
+
+    .dark .theme-switch[aria-checked="true"] {
+      background: #db2777;
+    }
+
+    .pricing-switch {
+      position: relative;
+      width: 48px;
+      height: 28px;
+      flex: 0 0 auto;
+      border: 0;
+      border-radius: 999px;
+      background: #d1d5db;
+      cursor: pointer;
+      transition: background .3s ease;
+    }
+
+    .pricing-switch::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #fff;
+      transition: transform .3s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,.15);
+    }
+
+    .pricing-switch[aria-checked="true"] {
+      background: #db2777;
+    }
+
+    .pricing-switch[aria-checked="true"]::after {
+      transform: translateX(20px);
+    }
+
+    .pricing-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      background: var(--surface);
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,.1);
+    }
+
+    .dark .pricing-card:hover {
+      box-shadow: 0 20px 40px rgba(0,0,0,.3);
+    }
+
+    .pricing-card.featured {
+      border: 2px solid #db2777;
+    }
+
+    .comparison-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .comparison-table {
+      width: 100%;
+      min-width: 720px;
+      border-collapse: collapse;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .comparison-table th {
+      font-weight: 700;
+    }
+
+    .faq-panel {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .3s ease;
+    }
+
+    .faq-panel > div {
+      overflow: hidden;
+    }
+
+    .faq-panel.is-open {
+      grid-template-rows: 1fr;
+    }
+
+    .faq-trigger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      min-height: 52px;
+      padding: 1.25rem;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      text-align: left;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .faq-trigger-icon {
+      transition: transform .3s ease;
+    }
+
+    .faq-trigger[aria-expanded="true"] .faq-trigger-icon {
+      transform: rotate(180deg);
+    }
+
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: .75rem;
+      overflow: hidden;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .to-top {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 40;
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 12px;
+      background: #db2777;
+      color: white;
+      font-size: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(219,39,119,.3);
+    }
+
+    .to-top.is-visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .to-top:hover {
+      background: #be185d;
+      transform: translateY(-2px);
+    }
+
+    :focus-visible {
+      outline: 3px solid #f472b6;
+      outline-offset: 3px;
+    }
+
+    @media (min-width: 768px) {
+      .mobile-menu {
+        max-height: none;
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .dark .bg-white {
+      background-color: var(--bg) !important;
+    }
+    .dark .bg-gray-50 {
+      background-color: var(--soft) !important;
+    }
+    .dark .text-gray-600,
+    .dark .text-gray-700,
+    .dark .text-gray-800,
+    .dark .text-gray-900 {
+      color: var(--text) !important;
+    }
+    .dark .text-gray-500,
+    .dark .text-gray-400 {
+      color: var(--muted) !important;
+    }
+    .dark .border-gray-100,
+    .dark .border-gray-200,
+    .dark .border-gray-300 {
+      border-color: var(--border) !important;
+    }
+    .dark .shadow-sm {
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,.3) !important;
+    }
+    .dark .bg-brand-50 {
+      background-color: rgba(219,39,119,.15) !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="nav-sentinel" style="height: 1px; position: absolute; top: 0; left: 0; width: 100%;"></div>
+
+  <header id="site-header" class="site-header">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
+      <a href="index.html" class="font-display text-2xl font-black text-brand-600">
+        Marty Store
+      </a>
+
+      <nav class="hidden items-center gap-7 md:flex" aria-label="Điều hướng chính">
+        <a href="index.html" class="font-medium hover:text-brand-600">Trang chủ</a>
+        <a href="pricing.html" class="font-semibold text-brand-600">Bảng giá</a>
+        <a href="contact.html" class="font-medium hover:text-brand-600">Liên hệ</a>
+
+        <button
+          id="theme-toggle"
+          class="theme-switch"
+          type="button"
+          role="switch"
+          aria-checked="false"
+          aria-label="Bật chế độ tối"
+          title="Chuyển chế độ sáng/tối"
+        ></button>
+      </nav>
+
+      <div class="flex items-center gap-3 md:hidden">
+        <button
+          id="theme-toggle-mobile"
+          class="theme-switch"
+          type="button"
+          role="switch"
+          aria-checked="false"
+          aria-label="Bật chế độ tối"
+        ></button>
+
+        <button
+          id="menu-toggle"
+          type="button"
+          class="rounded-lg border border-gray-300 p-2 dark:border-gray-600"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Mở menu"
+        >
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="mobile-menu md:hidden">
+      <nav class="mx-auto flex max-w-6xl flex-col gap-1 px-5 pb-5" aria-label="Điều hướng mobile">
+        <a href="index.html" class="rounded-lg px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800">
+          Trang chủ
+        </a>
+        <a href="pricing.html" class="rounded-lg bg-brand-50 px-4 py-3 font-semibold text-brand-600 dark:bg-brand-900">
+          Bảng giá
+        </a>
+        <a href="contact.html" class="rounded-lg px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800">
+          Liên hệ
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  
+  <main>
+    <section class="bg-gradient-to-r from-brand-50 to-pink-50 py-20 dark:from-brand-900 dark:to-gray-900">
+      <div class="mx-auto max-w-6xl px-5 text-center reveal">
+        <p class="mb-3 font-semibold text-brand-600">MARTY STORE</p>
+        <h1 class="font-display text-4xl font-bold md:text-5xl">
+          Chọn gói phù hợp
+        </h1>
+        <p class="mx-auto mt-4 max-w-2xl text-gray-600 dark:text-gray-300">
+          Đầu tư cho phong cách của bạn với lựa chọn phù hợp với nhu cầu.
+        </p>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="py-20" style="background:var(--bg)">
+      <div class="mx-auto max-w-6xl px-5">
+        <div class="mb-10 flex flex-col items-center justify-between gap-5 sm:flex-row">
+          <div>
+            <h2 class="font-display text-3xl font-bold">Bảng giá</h2>
+            <p class="mt-2 text-sm" style="color:var(--muted)">
+              Chuyển đổi giữa giá theo tháng và theo năm.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-3 rounded-full border px-4 py-2" style="border-color:var(--border);background:var(--surface)">
+            <span id="billing-monthly-label" class="text-sm font-semibold">Tháng</span>
+
+            <button
+              id="pricing-toggle"
+              class="pricing-switch"
+              type="button"
+              role="switch"
+              aria-checked="false"
+              aria-label="Chuyển sang giá theo năm"
+            ></button>
+
+            <span id="billing-yearly-label" class="text-sm font-semibold">
+              Năm <span class="text-brand-600">(tiết kiệm 2 tháng)</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-3">
+          <!-- Basic -->
+          <article class="pricing-card reveal">
+            <p class="text-sm font-semibold text-brand-600">Cơ bản</p>
+            <h3 class="mt-2 text-2xl font-bold">Khởi đầu</h3>
+            <p class="mt-2 text-sm" style="color:var(--muted)">
+              Phù hợp cho nhu cầu cơ bản.
+            </p>
+
+            <div class="mt-6 flex items-end gap-2">
+              <span
+                class="price text-4xl font-black"
+                data-monthly="199000"
+                data-yearly="1990000"
+              >199.000 ₫</span>
+              <span class="price-period mb-1 text-sm" style="color:var(--muted)">/tháng</span>
+            </div>
+
+            <ul class="mt-7 flex flex-col gap-3 text-sm" style="color:var(--muted)">
+              <li>✓ 1 bộ sưu tập / tháng</li>
+              <li>✓ Tư vấn cơ bản</li>
+              <li>✓ Miễn phí vận chuyển</li>
+              <li>✓ Hỗ trợ qua email</li>
+            </ul>
+
+            <a href="contact.html" class="mt-8 w-full rounded-lg bg-brand-600 px-6 py-3 text-center font-semibold text-white transition hover:bg-brand-700">
+              Chọn gói
+            </a>
+          </article>
+
+          <!-- Professional -->
+          <article class="pricing-card featured reveal">
+            <span class="absolute right-5 top-5 rounded-full bg-brand-600 px-3 py-1 text-xs font-bold text-white">
+              Phổ biến
+            </span>
+
+            <p class="text-sm font-semibold text-brand-600">Chuyên nghiệp</p>
+            <h3 class="mt-2 text-2xl font-bold">Nâng tầm</h3>
+            <p class="mt-2 text-sm" style="color:var(--muted)">
+              Lựa chọn cân bằng cho người dùng thường xuyên.
+            </p>
+
+            <div class="mt-6 flex items-end gap-2">
+              <span
+                class="price text-4xl font-black"
+                data-monthly="499000"
+                data-yearly="4990000"
+              >499.000 ₫</span>
+              <span class="price-period mb-1 text-sm" style="color:var(--muted)">/tháng</span>
+            </div>
+
+            <ul class="mt-7 flex flex-col gap-3 text-sm" style="color:var(--muted)">
+              <li>✓ 5 bộ sưu tập / tháng</li>
+              <li>✓ Tư vấn chuyên sâu</li>
+              <li>✓ Hỗ trợ 24/7</li>
+              <li>✓ Ưu tiên xử lý đơn hàng</li>
+            </ul>
+
+            <a href="contact.html" class="mt-8 w-full rounded-lg bg-brand-600 px-6 py-3 text-center font-semibold text-white transition hover:bg-brand-700">
+              Chọn gói
+            </a>
+          </article>
+
+          <!-- Business -->
+          <article class="pricing-card reveal">
+            <p class="text-sm font-semibold text-brand-600">Doanh nghiệp</p>
+            <h3 class="mt-2 text-2xl font-bold">Toàn diện</h3>
+            <p class="mt-2 text-sm" style="color:var(--muted)">
+              Dành cho nhu cầu lớn và hỗ trợ chuyên sâu.
+            </p>
+
+            <div class="mt-6 flex items-end gap-2">
+              <span
+                class="price text-4xl font-black"
+                data-monthly="999000"
+                data-yearly="9990000"
+              >999.000 ₫</span>
+              <span class="price-period mb-1 text-sm" style="color:var(--muted)">/tháng</span>
+            </div>
+
+            <ul class="mt-7 flex flex-col gap-3 text-sm" style="color:var(--muted)">
+              <li>✓ 20 bộ sưu tập / tháng</li>
+              <li>✓ Tư vấn 1-1 với chuyên gia</li>
+              <li>✓ Vận chuyển toàn quốc</li>
+              <li>✓ Chăm sóc khách hàng ưu tiên</li>
+            </ul>
+
+            <a href="contact.html" class="mt-8 w-full rounded-lg bg-brand-600 px-6 py-3 text-center font-semibold text-white transition hover:bg-brand-700">
+              Liên hệ tư vấn
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARISON -->
+    <section class="bg-gray-50 py-20 dark:bg-gray-800">
+      <div class="mx-auto max-w-6xl px-5">
+        <div class="text-center reveal">
+          <h2 class="font-display text-3xl font-bold">So sánh tính năng</h2>
+          <p class="mt-2 text-sm text-gray-500 lg:hidden">
+            ↔ Vuốt ngang để xem hết bảng
+          </p>
+        </div>
+
+        <div class="comparison-wrapper mt-8 rounded-xl border" style="border-color:var(--border);background:var(--surface)">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th class="text-left">Tính năng</th>
+                <th class="text-center">Cơ bản</th>
+                <th class="bg-brand-50 text-center dark:bg-brand-900">Chuyên nghiệp</th>
+                <th class="text-center">Doanh nghiệp</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Số bộ sưu tập</td>
+                <td class="text-center">1/tháng</td>
+                <td class="bg-brand-50 text-center dark:bg-brand-900">5/tháng</td>
+                <td class="text-center">20/tháng</td>
+              </tr>
+              <tr>
+                <td>Tư vấn</td>
+                <td class="text-center">Cơ bản</td>
+                <td class="bg-brand-50 text-center dark:bg-brand-900">Chuyên sâu</td>
+                <td class="text-center">1-1 với chuyên gia</td>
+              </tr>
+              <tr>
+                <td>Vận chuyển</td>
+                <td class="text-center">Miễn phí</td>
+                <td class="bg-brand-50 text-center dark:bg-brand-900">24/7</td>
+                <td class="text-center">Toàn quốc</td>
+              </tr>
+              <tr>
+                <td>Hỗ trợ</td>
+                <td class="text-center">Email</td>
+                <td class="bg-brand-50 text-center dark:bg-brand-900">Ưu tiên</td>
+                <td class="text-center">Chuyên gia riêng</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20" style="background:var(--bg)">
+      <div class="mx-auto max-w-3xl px-5">
+        <div class="text-center reveal">
+          <h2 class="font-display text-3xl font-bold">Câu hỏi về thanh toán</h2>
+          <p class="mt-2" style="color:var(--muted)">
+            Những thông tin bạn cần biết trước khi lựa chọn.
+          </p>
+        </div>
+
+        <div id="faq-list" class="mt-8 flex flex-col gap-4">
+          <article class="faq-item">
+            <button
+              class="faq-trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="faq-panel-1"
+              data-faq-trigger
+            >
+              <span>Tôi có thể thanh toán bằng cách nào?</span>
+              <span class="faq-trigger-icon text-brand-600" aria-hidden="true">▼</span>
+            </button>
+            <div id="faq-panel-1" class="faq-panel" role="region">
+              <div>
+                <p class="px-6 pb-6 text-sm leading-7" style="color:var(--muted)">
+                  Chúng tôi chấp nhận thanh toán qua thẻ tín dụng, chuyển khoản ngân hàng và ví điện tử.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button
+              class="faq-trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="faq-panel-2"
+              data-faq-trigger
+            >
+              <span>Tôi có thể thay đổi gói sau khi đăng ký không?</span>
+              <span class="faq-trigger-icon text-brand-600" aria-hidden="true">▼</span>
+            </button>
+            <div id="faq-panel-2" class="faq-panel" role="region">
+              <div>
+                <p class="px-6 pb-6 text-sm leading-7" style="color:var(--muted)">
+                  Có. Bạn có thể liên hệ với đội ngũ Marty Store để được hỗ trợ thay đổi gói phù hợp với nhu cầu.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button
+              class="faq-trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="faq-panel-3"
+              data-faq-trigger
+            >
+              <span>Gói năm có được giảm giá không?</span>
+              <span class="faq-trigger-icon text-brand-600" aria-hidden="true">▼</span>
+            </button>
+            <div id="faq-panel-3" class="faq-panel" role="region">
+              <div>
+                <p class="px-6 pb-6 text-sm leading-7" style="color:var(--muted)">
+                  Có. Khi chuyển sang thanh toán theo năm, bạn được tính tương đương 10 tháng thay vì 12 tháng.
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <button id="to-top" class="to-top" type="button" aria-label="Lên đầu trang">
+    ↑
+  </button>
+
+  <footer class="bg-gray-950 py-10 text-gray-400">
+    <div class="mx-auto max-w-6xl px-5 text-center text-sm">
+      © 2026 Marty Store. All rights reserved.
+    </div>
+  </footer>
+
+  <script  src="script.js"></script>
+</body>
+</html>
