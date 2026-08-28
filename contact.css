@@ -1,0 +1,266 @@
+
+.contact-hero {
+  padding: 5rem 0;
+  background: linear-gradient(to right, var(--brand-50), #fce7f3);
+  text-align: center;
+}
+
+.dark .contact-hero {
+  background: linear-gradient(to right, #1a2d28, #0e1c19);
+}
+
+.contact-hero h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.contact-hero p {
+  margin-top: 1rem;
+  color: var(--text-muted);
+}
+
+
+.contact-section {
+  padding: 5rem 0;
+  background: var(--bg);
+}
+
+.contact-grid {
+  display: grid;
+  gap: 2.5rem;
+}
+
+
+.contact-form-wrapper h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.contact-form-wrapper .form-desc {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.form-group label .required {
+  color: #dc2626;
+}
+
+.field-input {
+  width: 100%;
+  min-height: 46px;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--surface);
+  color: var(--text);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-family: inherit;
+}
+
+.field-input:focus {
+  border-color: var(--brand-500);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.15);
+}
+
+.field-input:user-invalid:not(:placeholder-shown) {
+  border-color: #dc2626;
+}
+
+textarea.field-input {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.field-hint {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ===== CHECKBOX ===== */
+.checkbox-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-top: 0.25rem;
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--brand-600);
+}
+
+.checkbox-group label {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.checkbox-group label a {
+  font-weight: 600;
+  color: var(--brand-600);
+}
+
+.checkbox-group label a:hover {
+  text-decoration: underline;
+}
+
+/* ===== FORM BUTTON ===== */
+.form-submit-btn {
+  border-radius: 0.5rem;
+  background: var(--brand-600);
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  color: white;
+  border: 0;
+  transition: background-color 0.2s ease;
+}
+
+.form-submit-btn:hover {
+  background: var(--brand-700);
+}
+
+.form-status {
+  min-height: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.form-note {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* ===== CONTACT INFO CARDS ===== */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-card {
+  padding: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--surface);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+}
+
+.dark .contact-card:hover {
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+}
+
+.contact-card h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.contact-card .info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.contact-card .info-item .label {
+  font-weight: 600;
+}
+
+.contact-card .info-item .value {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.contact-card .info-item .value a {
+  color: var(--brand-600);
+}
+
+.contact-card .info-item .value a:hover {
+  text-decoration: underline;
+}
+
+/* ===== STEPS ===== */
+.steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.step-item {
+  display: flex;
+  gap: 1rem;
+}
+
+.step-number {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--brand-100);
+  font-weight: 700;
+  color: var(--brand-600);
+}
+
+.dark .step-number {
+  background: var(--brand-900);
+  color: var(--brand-400);
+}
+
+.step-content .step-title {
+  font-weight: 600;
+}
+
+.step-content .step-desc {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+
+@media (min-width: 1024px) {
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contact-hero h1 {
+    font-size: 3rem;
+  }
+
+  .contact-form-wrapper h2 {
+    font-size: 2.5rem;
+  }
+}
